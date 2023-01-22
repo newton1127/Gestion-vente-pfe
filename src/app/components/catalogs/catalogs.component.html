@@ -1,0 +1,38 @@
+<div class="container">
+  <h2>Catalogs</h2>
+  <br>
+  <button class="btn btn-primary" (click)="onCreate()">Create</button>
+  <br><br>
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Libelle</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let catalog of catalogs">
+      <td>{{ catalog.id }}</td>
+      <td>{{ catalog.Libelle }}</td>
+      <td>
+        <button class="btn btn-secondary" (click)="onSelect(catalog)">Edit</button>
+        <button class="btn btn-danger" (click)="onDelete(catalog)">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <br>
+  <div *ngIf="selectedCatalog">
+    <h3>Update Catalog</h3>
+    <br>
+    <form>
+      <div class="form-group">
+        <label for="Libelle">Libelle</label>
+        <input type="text" class="form-control" id="Libelle" [(ngModel)]="selectedCatalog.Libelle" name="Libelle">
+      </div>
+      <button class="btn btn-primary" (click)="onUpdate()">Update</button>
+
+    </form>
+  </div>
+</div>

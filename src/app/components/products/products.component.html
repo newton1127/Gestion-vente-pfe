@@ -1,0 +1,49 @@
+<!-- catalog.component.html -->
+
+<div class="container">
+  <h2>Produits</h2>
+  <button class="btn btn-primary" (click)="gotoList()">List</button>
+  <div *ngIf="editProduct || selectedProduct">
+    <div class="form-group">
+      <label for="designation">Designation</label>
+      <input type="text" class="form-control" [(ngModel)]="newProduct.designation" id="designation" *ngIf="newProduct">
+      <label for="description">Description</label>
+      <input type="text" class="form-control" [(ngModel)]="newProduct.description" id="description" *ngIf="newProduct">
+      <label for="quantite_stock">Quantité de stock</label>
+      <input type="number" class="form-control" [(ngModel)]="newProduct.quantite_stock" id="quantite_stock" *ngIf="newProduct">
+      <label for="prix">Prix</label>
+      <input type="number" class="form-control" [(ngModel)]="newProduct.prix" id="prix" *ngIf="newProduct">
+
+    </div>
+    <button class="btn btn-primary" (click)="onCreate()" *ngIf="!selectedProduct">Create</button>
+    <button class="btn btn-primary" (click)="onUpdate()" *ngIf="selectedProduct">Update</button>
+  </div>
+  <table class="table table-striped" *ngIf="products && !newProduct">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Désignation</th>
+      <th>Description</th>
+      <th>Quantité de stock</th>
+      <th>Prix</th>
+      <th>Catalogue</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let product of products">
+      <td>{{product.id}}</td>
+      <td>{{product.designation}}</td>
+      <td>{{product.description}}</td>
+      <td>{{product.quantite_stock}}</td>
+      <td>{{product.prix}}</td>
+      <td>{{product.catalog.Libelle}}</td>
+      <td>
+        <button class="btn btn-warning" (click)="onEdit(product)">Edit</button>
+        <button class="btn btn-danger" (click)="onDelete(product)">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
